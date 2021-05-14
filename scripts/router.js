@@ -1,11 +1,15 @@
 // router.js
 
 export const router = {};
+const BASE_URL = location.href; // url string
+let body = document.querySelector("body"); // HTML element
+let title = document.querySelector("header > h1"); // HTML element
+console.log(BASE_URL);
 
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+router.setState = function(state, entryNumber = 0, journalEntry = null, push = true) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -35,4 +39,43 @@ router.setState = function() {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
+
+  switch(state) {
+    case 'home':
+      if (push)
+        history.pushState({ page: state }, state, BASE_URL);
+      body.className = '';
+      title.innerText = 'Journal Entries';
+      removeEntryPage();
+      break;
+    case 'entry':
+      if (entryNumber == 0 || journalEntry == null)
+        console.error("INCORRECT ENTRY DETAILS");
+      if (push)
+        history.pushState({ page: state, entryNum: entryNumber, entry: journalEntry }, state + entryNumber, BASE_URL + '#entry' + entryNumber);
+      body.className = 'single-entry';
+      title.innerText = 'Entry ' + entryNumber;
+      addElements(journalEntry);
+      break;
+    case 'settings':
+      if (push)
+        history.pushState({ page: state }, state, BASE_URL + '#settings');
+      body.className = 'settings';
+      title.innerText = 'Settings';
+      removeEntryPage();
+      break;
+    default:
+      console.error("INCORRECT STATE ASSIGNMENT: " + state);
+      break;
+  }
+}
+
+function addElements(entry) {
+  let entryPageElement = document.querySelector('entry-page');
+  entryPageElement.entry = entry;
+}
+
+function removeEntryPage() {
+  document.querySelector('entry-page').remove();
+  body.appendChild(document.createElement('entry-page'));
 }
