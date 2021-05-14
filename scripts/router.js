@@ -4,7 +4,6 @@ export const router = {};
 const BASE_URL = location.href; // url string
 let body = document.querySelector("body"); // HTML element
 let title = document.querySelector("header > h1"); // HTML element
-console.log(BASE_URL);
 
 /**
  * Changes the "page" (state) that your SPA app is currently set to
