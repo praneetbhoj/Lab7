@@ -7,11 +7,11 @@
 
 const CACHE_NAME = 'journal_entries_cache';
 let urlsToCache = [
-    '/',
-    '/components/entry-page.js',
-    '/components/journal-entry.js',
-    '/scripts/router.js',
-    '/scripts/script.js'
+    './',
+    './components/entry-page.js',
+    './components/journal-entry.js',
+    './scripts/router.js',
+    './scripts/script.js'
 ];
 
 self.addEventListener('install', function (event) {
