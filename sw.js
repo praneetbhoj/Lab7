@@ -6,10 +6,12 @@
 //   - One for fetch requests
 
 const CACHE_NAME = 'journal_entries_cache';
-var urlsToCache = [
+let urlsToCache = [
     '/',
-    '/components/',
-    '/scripts/'
+    '/components/entry-page.js',
+    '/components/journal-entry.js',
+    '/scripts/router.js',
+    '/scripts/script.js'
 ];
 
 self.addEventListener('install', function (event) {
