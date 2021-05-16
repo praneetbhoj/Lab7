@@ -21,11 +21,9 @@ if ('serviceWorker' in navigator) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  
   fetch('https://cse110lab6.herokuapp.com/entries')
     .then(response => response.json())
     .then(entries => {
-      
       let entryCounter = 1;
       
       // looping through entries
